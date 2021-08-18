@@ -9,24 +9,19 @@ public class Tree {
 static int trees(int arr[], int n)
 {
 
-	Queue<Integer> q = new LinkedList<>();
-	
-	Arrays.sort(arr);
+	int maxHeight = Integer.MIN_VALUE;
+	int visibleTrees = 0;
     
-    q.add(arr[0]);
-    
-    for (int i = 1; i < n; i++)
+    for (int i =0; i < n; i++)
     {
-        int now = q.element();
- 
-        if (arr[i] >= 2 * now)
-        q.remove();
- 
-        
-        q.add(arr[i]);
+       if(arr[i]>maxHeight)
+       {
+       maxHeight = arr[i];
+       visibleTrees++;
+       }
     }
  
-    return q.size();
+    return visibleTrees;
 }
 
 
