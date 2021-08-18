@@ -9,24 +9,30 @@ public class Tree {
 static int trees(int arr[], int n)
 {
 
-	Queue<Integer> q = new LinkedList<>();
-	
-	Arrays.sort(arr);
+	Stack<Integer> s = new Stack();
+
     
-    q.add(arr[0]);
     
-    for (int i = 1; i < n; i++)
+    for (int i = n-1; i>=0; i--)
     {
-        int now = q.element();
- 
-        if (arr[i] >= 2 * now)
-        q.remove();
- 
-        
-        q.add(arr[i]);
+       if(s.isEmpty())
+       {
+       		s.push(arr[i]);
+       }
+       else
+       {
+       int curr = arr[i];
+       
+       while(!s.isEmpty() && curr>=s.peek())
+       {
+       		s.pop();
+       }
+       
+       s.push(arr[i]);
+       }
     }
  
-    return q.size();
+    return s.size();
 }
 
 
